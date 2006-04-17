@@ -34,7 +34,7 @@ install %{SOURCE2} .
 ./gen-installed-chrome.sh locale bin/chrome/{CZ,cs-CZ,cs-unix}.jar \
 	> lang-cs-installed-chrome.txt
 ./gen-installed-chrome.sh locale chrome/enigmail-cs-CZ.jar \
-	> lang-cs-installed-chrome.txt
+	>> lang-cs-installed-chrome.txt
 
 %install
 rm -rf $RPM_BUILD_ROOT
