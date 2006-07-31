@@ -1,13 +1,16 @@
+%define	_lang	cs
+%define	_reg	CZ
+%define	_lare	%{_lang}-%{_reg}
 Summary:	Czech resources for SeaMonkey
 Summary(pl):	Czeskie pliki jêzykowe dla SeaMonkeya
-Name:		seamonkey-lang-cs
-Version:	1.0
+Name:		seamonkey-lang-%{_lang}
+Version:	1.0.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://ftp.mozilla.org/pub/mozilla.org/seamonkey/releases/%{version}/contrib-localized/seamonkey-%{version}.cs-CZ.langpack.xpi
-# Source0-md5:	a1369d8f008ab942e829e1b63d6c520b
-Source1:	http://www.mozilla-enigmail.org/downloads/lang/0.9x/enigmail-cs-CZ-0.9x.xpi
+Source0:	http://ftp.mozilla.org/pub/mozilla.org/seamonkey/releases/%{version}/contrib-localized/seamonkey-%{version}.%{_lare}.langpack.xpi
+# Source0-md5:	c905421d75741d9150160e84fb54e5de
+Source1:	http://www.mozilla-enigmail.org/downloads/lang/0.9x/enigmail-%{_lare}-0.9x.xpi
 # Source1-md5:	062b8ff76ffea50045aa00c92c83b496
 Source2:	gen-installed-chrome.sh
 URL:		http://www.mozilla.org/projects/seamonkey/
@@ -28,20 +31,20 @@ Czeskie pliki jêzykowe dla SeaMonkeya.
 
 %prep
 %setup -q -c
-unzip -o %{SOURCE1}
+%{__unzip} -o -qq %{SOURCE1}
 install %{SOURCE2} .
-./gen-installed-chrome.sh locale bin/chrome/{CZ,cs-CZ,cs-unix}.jar \
-	> lang-cs-installed-chrome.txt
-./gen-installed-chrome.sh locale chrome/enigmail-cs-CZ.jar \
-	>> lang-cs-installed-chrome.txt
+./gen-installed-chrome.sh locale bin/chrome/{%{_reg},%{_lare},%{_lang}-unix}.jar \
+	> lang-%{_lang}-installed-chrome.txt
+./gen-installed-chrome.sh locale chrome/enigmail-%{_lare}.jar \
+	>> lang-%{_lang}-installed-chrome.txt
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_chromedir}
 
-install bin/chrome/{CZ,cs-CZ,cs-unix}.jar $RPM_BUILD_ROOT%{_chromedir}
-install chrome/enigmail-cs-CZ.jar $RPM_BUILD_ROOT%{_chromedir}
-install lang-cs-installed-chrome.txt $RPM_BUILD_ROOT%{_chromedir}
+install bin/chrome/{%{_reg},%{_lare},%{_lang}-unix}.jar $RPM_BUILD_ROOT%{_chromedir}
+install chrome/enigmail-%{_lare}.jar $RPM_BUILD_ROOT%{_chromedir}
+install lang-%{_lang}-installed-chrome.txt $RPM_BUILD_ROOT%{_chromedir}
 cp -r bin/{defaults,searchplugins} $RPM_BUILD_ROOT%{_datadir}/seamonkey
 
 %clean
@@ -55,12 +58,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_chromedir}/CZ.jar
-%{_chromedir}/cs-CZ.jar
-%{_chromedir}/cs-unix.jar
-%{_chromedir}/enigmail-cs-CZ.jar
-%{_chromedir}/lang-cs-installed-chrome.txt
+%{_chromedir}/%{_reg}.jar
+%{_chromedir}/%{_lare}.jar
+%{_chromedir}/%{_lang}-unix.jar
+%{_chromedir}/enigmail-%{_lare}.jar
+%{_chromedir}/lang-%{_lang}-installed-chrome.txt
 %{_datadir}/seamonkey/searchplugins/*
-%{_datadir}/seamonkey/defaults/messenger/CZ
-%{_datadir}/seamonkey/defaults/pref/all-cs.js
-%{_datadir}/seamonkey/defaults/profile/CZ
+%{_datadir}/seamonkey/defaults/messenger/%{_reg}
+%{_datadir}/seamonkey/defaults/pref/all-%{_lang}.js
+%{_datadir}/seamonkey/defaults/profile/%{_reg}
