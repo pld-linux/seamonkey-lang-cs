@@ -4,14 +4,14 @@
 Summary:	Czech resources for SeaMonkey
 Summary(pl):	Czeskie pliki jêzykowe dla SeaMonkeya
 Name:		seamonkey-lang-%{_lang}
-Version:	1.0.2
+Version:	1.0.6
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/seamonkey/releases/%{version}/contrib-localized/seamonkey-%{version}.%{_lare}.langpack.xpi
 # Source0-md5:	c905421d75741d9150160e84fb54e5de
 Source1:	http://www.mozilla-enigmail.org/downloads/lang/0.9x/enigmail-%{_lare}-0.9x.xpi
-# Source1-md5:	062b8ff76ffea50045aa00c92c83b496
+# Source1-md5:	d605fb750c353e8a4c5d853aae1594ef
 Source2:	gen-installed-chrome.sh
 URL:		http://www.mozilla.org/projects/seamonkey/
 BuildRequires:	unzip
