@@ -4,17 +4,18 @@
 Summary:	Czech resources for SeaMonkey
 Summary(pl):	Czeskie pliki jêzykowe dla SeaMonkeya
 Name:		seamonkey-lang-%{_lang}
-Version:	1.0.6
+Version:	1.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://ftp.mozilla.org/pub/mozilla.org/seamonkey/releases/%{version}/contrib-localized/seamonkey-%{version}.%{_lare}.langpack.xpi
-# Source0-md5:	c905421d75741d9150160e84fb54e5de
+# Source0-md5:	1a98c81815c690110f7bc8ca1e79f332
 Source1:	http://www.mozilla-enigmail.org/downloads/lang/0.9x/enigmail-%{_lare}-0.9x.xpi
 # Source1-md5:	d605fb750c353e8a4c5d853aae1594ef
 Source2:	gen-installed-chrome.sh
 URL:		http://www.mozilla.org/projects/seamonkey/
 BuildRequires:	unzip
+BuildRequires:	util-linux
 Requires(post,postun):	seamonkey >= %{version}
 Requires(post,postun):	textutils
 Requires:	seamonkey >= %{version}
@@ -33,7 +34,7 @@ Czeskie pliki jêzykowe dla SeaMonkeya.
 %setup -q -c
 %{__unzip} -o -qq %{SOURCE1}
 install %{SOURCE2} .
-./gen-installed-chrome.sh locale bin/chrome/{%{_reg},%{_lare},%{_lang}-unix}.jar \
+./gen-installed-chrome.sh locale chrome/{%{_reg},%{_lare},%{_lang}-unix}.jar \
 	> lang-%{_lang}-installed-chrome.txt
 ./gen-installed-chrome.sh locale chrome/enigmail-%{_lare}.jar \
 	>> lang-%{_lang}-installed-chrome.txt
@@ -42,10 +43,9 @@ install %{SOURCE2} .
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_chromedir}
 
-install bin/chrome/{%{_reg},%{_lare},%{_lang}-unix}.jar $RPM_BUILD_ROOT%{_chromedir}
+install chrome/{%{_reg},%{_lare},%{_lang}-unix}.jar $RPM_BUILD_ROOT%{_chromedir}
 install chrome/enigmail-%{_lare}.jar $RPM_BUILD_ROOT%{_chromedir}
 install lang-%{_lang}-installed-chrome.txt $RPM_BUILD_ROOT%{_chromedir}
-cp -r bin/{defaults,searchplugins} $RPM_BUILD_ROOT%{_datadir}/seamonkey
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,7 +63,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_chromedir}/%{_lang}-unix.jar
 %{_chromedir}/enigmail-%{_lare}.jar
 %{_chromedir}/lang-%{_lang}-installed-chrome.txt
-%{_datadir}/seamonkey/searchplugins/*
-%{_datadir}/seamonkey/defaults/messenger/%{_reg}
-%{_datadir}/seamonkey/defaults/pref/all-%{_lang}.js
-%{_datadir}/seamonkey/defaults/profile/%{_reg}
