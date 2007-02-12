@@ -2,7 +2,7 @@
 %define	_reg	CZ
 %define	_lare	%{_lang}-%{_reg}
 Summary:	Czech resources for SeaMonkey
-Summary(pl):	Czeskie pliki jêzykowe dla SeaMonkeya
+Summary(pl.UTF-8):   Czeskie pliki jÄ™zykowe dla SeaMonkeya
 Name:		seamonkey-lang-%{_lang}
 Version:	1.1
 Release:	1
@@ -27,8 +27,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Czech resources for SeaMonkey.
 
-%description -l pl
-Czeskie pliki jêzykowe dla SeaMonkeya.
+%description -l pl.UTF-8
+Czeskie pliki jÄ™zykowe dla SeaMonkeya.
 
 %prep
 %setup -q -c
